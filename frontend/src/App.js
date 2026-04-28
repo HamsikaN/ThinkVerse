@@ -8,21 +8,15 @@ function App() {
   const detect = async () => {
     try {
       setLoading(true);
-
       const res = await axios.get("http://127.0.0.1:5000/detect");
-
-      console.log("API RESPONSE:", res.data); // debug
-
+      console.log("API RESPONSE:", res.data);
       setObjects(res.data.objects || []);
       setLoading(false);
-
     } catch (err) {
       console.error("Error:", err);
       setLoading(false);
     }
   };
-
-  // auto detect every 5 sec
   useEffect(() => {
     detect();
     const interval = setInterval(detect, 5000);
@@ -51,7 +45,7 @@ function App() {
             <p key={index}>🔍 {obj}</p>
           ))
         ) : (
-          <p>Detecting...</p>   // ✅ no "No objects detected" bug
+          <p>Detecting...</p> 
         )}
       </div>
     </div>
